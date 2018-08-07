@@ -17,8 +17,9 @@ class Application
       resp.write handle_search(search_term)
       elsif req.path.match(/cart/)
         if @@cart.empty?
-          resp.write "cart is empty"
-        else @@cart.each do |item|
+          resp.write "Your cart is empty"
+        else 
+          @@cart.each do |item|
           resp.write "#{item}\n"
         end 
       end 
@@ -26,9 +27,9 @@ class Application
         add_items = req.params["item"]
         if @@items.include? add_items
           @@cart << add_items
-          resp.write "#{add_items} added to cart"
+          resp.write "added #{add_items}"
         else
-          resp.write "Item out of stock"
+          resp.write "We don't have that item"
         end 
         
     else
